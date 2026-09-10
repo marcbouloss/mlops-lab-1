@@ -1,0 +1,19 @@
+preprocess:
+  raw_dir: data/food11_raw
+  out_dir: processed
+  seed: 42
+
+train:
+  arch: mobilenet_v3_small   # torchvision model: mobilenet_v3_small | resnet18
+  epochs: 5
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.0001
+  img_size: 224
+  num_workers: 4
+  freeze_backbone: true
+  subset_fraction: 1.0       # 0<f<=1, use a fraction of the training set for quick runs
+  seed: 42
+
+evaluate:
+  batch_size: 64

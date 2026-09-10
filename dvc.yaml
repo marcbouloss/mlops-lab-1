@@ -1,0 +1,51 @@
+stages:
+  preprocess:
+    cmd: python -m src.preprocess
+    deps:
+      - src/preprocess.py
+      - src/common.py
+      - data/food11_raw
+    params:
+      - preprocess
+    outs:
+      - processed/train.csv
+      - processed/val.csv
+      - processed/test.csv
+      - processed/summary.json
+
+  train:
+    cmd: python -m src.train
+    deps:
+      - src/train.py
+      - src/dataset.py
+      - src/common.py
+      - processed/train.csv
+      - processed/val.csv
+    params:
+      - train
+    outs:
+      - models/model.pt
+    metrics:
+      - metrics/train_metrics.json:
+          cache: false
+    plots:
+      - metrics/training_history.csv:
+          x: epoch
+          y: val_acc
+
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - src/dataset.py
+      - src/common.py
+      - models/model.pt
+      - processed/test.csv
+    params:
+      - evaluate
+    metrics:
+      - metrics/eval_metrics.json:
+          cache: false
+    plots:
+      - plots/confusion_matrix.png:
+          cache: false

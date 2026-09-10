@@ -1,0 +1,126 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python -m src.preprocess
+    deps:
+    - path: data/food11_raw
+      hash: md5
+      md5: 83c4097f849faf352814d74d0ca7bd60.dir
+      size: 1188442712
+      nfiles: 16643
+    - path: src/common.py
+      hash: md5
+      md5: 3ea57c4db66e68d13121908cbd7f5e2e
+      size: 2300
+    - path: src/preprocess.py
+      hash: md5
+      md5: 5d9b03600a5fcb01a0b320139a637b3d
+      size: 1771
+    params:
+      params.yaml:
+        preprocess:
+          raw_dir: data/food11_raw
+          out_dir: processed
+          seed: 42
+    outs:
+    - path: processed/summary.json
+      hash: md5
+      md5: 13ec14d02ade3d65deabc028d5de54c5
+      size: 982
+    - path: processed/test.csv
+      hash: md5
+      md5: b6aaf9b33281cdb082e49f8271556ca0
+      size: 159258
+    - path: processed/train.csv
+      hash: md5
+      md5: 017b1ae1f359bc101d20777712989c8f
+      size: 453579
+    - path: processed/val.csv
+      hash: md5
+      md5: 50ec3d976d198508822c96e3eecdf59b
+      size: 163338
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: processed/train.csv
+      hash: md5
+      md5: 017b1ae1f359bc101d20777712989c8f
+      size: 453579
+    - path: processed/val.csv
+      hash: md5
+      md5: 50ec3d976d198508822c96e3eecdf59b
+      size: 163338
+    - path: src/common.py
+      hash: md5
+      md5: 3ea57c4db66e68d13121908cbd7f5e2e
+      size: 2300
+    - path: src/dataset.py
+      hash: md5
+      md5: 4a7fcb9ff78e25f917809d43b3cd9411
+      size: 1390
+    - path: src/train.py
+      hash: md5
+      md5: d7c5ed3cb4073036e12f5a5558578c3d
+      size: 4278
+    params:
+      params.yaml:
+        train:
+          arch: mobilenet_v3_small
+          epochs: 5
+          batch_size: 64
+          lr: 0.001
+          weight_decay: 0.0001
+          img_size: 224
+          num_workers: 4
+          freeze_backbone: true
+          subset_fraction: 1.0
+          seed: 42
+    outs:
+    - path: metrics/train_metrics.json
+      hash: md5
+      md5: 144d2e54ba161739eac8fb4d176ced47
+      size: 82
+    - path: metrics/training_history.csv
+      hash: md5
+      md5: 36906a7e8a2f5b57fe11cdbf5e57fbf4
+      size: 334
+    - path: models/model.pt
+      hash: md5
+      md5: c7529420b6c2dfb330a40ac75edb0497
+      size: 6239843
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: models/model.pt
+      hash: md5
+      md5: c7529420b6c2dfb330a40ac75edb0497
+      size: 6239843
+    - path: processed/test.csv
+      hash: md5
+      md5: b6aaf9b33281cdb082e49f8271556ca0
+      size: 159258
+    - path: src/common.py
+      hash: md5
+      md5: 3ea57c4db66e68d13121908cbd7f5e2e
+      size: 2300
+    - path: src/dataset.py
+      hash: md5
+      md5: 4a7fcb9ff78e25f917809d43b3cd9411
+      size: 1390
+    - path: src/evaluate.py
+      hash: md5
+      md5: 68547dd5c8fcfed238c6de010dfe1d4a
+      size: 2675
+    params:
+      params.yaml:
+        evaluate:
+          batch_size: 64
+    outs:
+    - path: metrics/eval_metrics.json
+      hash: md5
+      md5: 5541e6034d96bce3ce1c6a6b39e0efdc
+      size: 151
+    - path: plots/confusion_matrix.png
+      hash: md5
+      md5: b81ab845e86f2eae0ebd6c47dc62797c
+      size: 85093

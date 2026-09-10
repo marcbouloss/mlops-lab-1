@@ -7,4 +7,9 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# MLflow local runs
+mlruns/
+
+# DVC-tracked raw data (see data.dvc)
 /data
