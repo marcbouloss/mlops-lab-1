@@ -6,6 +6,8 @@ image classification task (11 food categories).
 - **Code**: GitHub — `marcbouloss/mlops-lab-1`
 - **Data + experiments**: DagsHub — `urpx-prog/mlops-lab-1` (DVC remote + MLflow tracking)
 
+Lab 2 (MLflow experiment tracking, `src/food11/train.py`): see [LAB2.md](LAB2.md).
+
 ## Stack
 
 | Concern | Tool |
