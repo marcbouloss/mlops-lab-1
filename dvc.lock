@@ -124,3 +124,40 @@ stages:
       hash: md5
       md5: b81ab845e86f2eae0ebd6c47dc62797c
       size: 85093
+  imagefolders:
+    cmd: python -m src.build_imagefolders
+    deps:
+    - path: processed/test.csv
+      hash: md5
+      md5: b6aaf9b33281cdb082e49f8271556ca0
+      size: 159258
+    - path: processed/train.csv
+      hash: md5
+      md5: 017b1ae1f359bc101d20777712989c8f
+      size: 453579
+    - path: processed/val.csv
+      hash: md5
+      md5: 50ec3d976d198508822c96e3eecdf59b
+      size: 163338
+    - path: src/build_imagefolders.py
+      hash: md5
+      md5: 4e627171980cbd9f026df233caacf388
+      size: 1339
+    params:
+      params.yaml:
+        imagefolders:
+          mini_per_class:
+            train: 50
+            val: 20
+            test: 20
+    outs:
+    - path: processed/food11_processed
+      hash: md5
+      md5: a2ec51c87a2f3b5a619c07f00ae94567.dir
+      size: 1188442712
+      nfiles: 16643
+    - path: processed/food11_processed_mini
+      hash: md5
+      md5: 5b48816880fcaccbe9e53e5dcf73f125.dir
+      size: 74627708
+      nfiles: 990

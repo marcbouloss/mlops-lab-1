@@ -13,3 +13,4 @@ mlruns/
 
 # DVC-tracked raw data (see data.dvc)
 /data
+mlflow.db

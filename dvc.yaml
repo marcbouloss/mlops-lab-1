@@ -13,6 +13,19 @@ stages:
       - processed/test.csv
       - processed/summary.json
 
+  imagefolders:
+    cmd: python -m src.build_imagefolders
+    deps:
+      - src/build_imagefolders.py
+      - processed/train.csv
+      - processed/val.csv
+      - processed/test.csv
+    params:
+      - imagefolders
+    outs:
+      - processed/food11_processed
+      - processed/food11_processed_mini
+
   train:
     cmd: python -m src.train
     deps:

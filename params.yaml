@@ -17,3 +17,9 @@ train:
 
 evaluate:
   batch_size: 64
+
+imagefolders:
+  mini_per_class:            # images per class in food11_processed_mini
+    train: 50
+    val: 20
+    test: 20
