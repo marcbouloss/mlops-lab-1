@@ -9,6 +9,7 @@
 | `mlflow.db` / `mlruns/` ignored | `.gitignore` |
 | Training script with MLflow tracking | [`src/food11/train.py`](src/food11/train.py) |
 | ImageFolder datasets (`food11_processed`, `food11_processed_mini`) | `imagefolders` stage in `dvc.yaml`, [`src/build_imagefolders.py`](src/build_imagefolders.py) |
+| MLflow UI screenshots (one per question) | [`reports/lab2/screenshots/`](reports/lab2/screenshots) |
 | 4 comparison runs | [`reports/lab2/runs.csv`](reports/lab2/runs.csv), [`reports/lab2/metrics.png`](reports/lab2/metrics.png) |
 
 **About the dataset:** in Lab 1 the raw Food-11 images stayed in flat folders
@@ -124,6 +125,8 @@ experiment.` In the UI a new experiment `food11` appears next to `Default`, with
 (Default is `0`) and artifact location `mlruns/1`. On later calls the experiment already
 exists, so `set_experiment` just selects it and new runs are added to it.
 
+![Experiments list: food11 created next to Default](reports/lab2/screenshots/q4_experiments_list.png)
+
 ### Question 5 - `log_param` vs `log_metric`, and why only metrics take `step`
 
 - A **param** is an *input* to the run, chosen before training and fixed for its whole
@@ -146,9 +149,13 @@ On a run's page in the UI:
   `optimizer`, `seed`) and the latest metric values.
 - **Model metrics** shows the per-epoch charts of `train_loss`, `val_loss` and
   `val_accuracy`, plus `test_accuracy`, which is a single point.
-- **Artifacts / Logged models** shows the model `model` (`MLmodel`, `data/model.pt2`,
-  `conda.yaml`, `python_env.yaml`, `requirements.txt`, `input_example.json`,
-  `serving_input_example.json`).
+- **Logged models (1)**, at the bottom of Overview, links to the model `model`. Its
+  **Artifacts** tab lists `data/model.pt2`, `MLmodel`, `conda.yaml`, `python_env.yaml`,
+  `requirements.txt`, `registered_model_meta`, `input_example.json` and
+  `serving_input_example.json`. Selecting `MLmodel` shows its full path on disk.
+  (In MLflow 3 the model is a *logged model* linked to the run, not a file in the run's
+  own Artifacts tab. That's why the run's Artifacts tab and the Compare page show "no
+  artifacts".)
 
 On disk, the artifacts are in the `--default-artifact-root` folder, **not** in `mlflow.db`.
 The database only stores the model's URI. MLflow 3 treats logged models as their own
@@ -166,6 +173,12 @@ mlruns/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/
 The artifact root is a plain local path. Because of that, the *training script itself*
 writes these files straight to the filesystem (relative to where it runs, which is the
 repo root). They don't go through the server over HTTP.
+
+![Best run overview: params, metrics, logged model](reports/lab2/screenshots/q6_run_overview_params.png)
+
+![Best run metric charts per epoch](reports/lab2/screenshots/q6_run_model_metrics.png)
+
+![Logged model artifacts and on-disk path](reports/lab2/screenshots/q6_logged_model_artifacts.png)
 
 ### Question 7 - Which learning rate gave the best `val_accuracy`? Is higher always better?
 
@@ -189,12 +202,16 @@ rate can also be *too* small (training becomes very slow and underfits in a fixe
 of epochs), so the right value has to be found by experiment, which is what this
 comparison does.
 
+![Compare 4 runs: params and metrics](reports/lab2/screenshots/q7_compare_runs.png)
+
 ### Question 8 - Parallel coordinates plot (`lr`, `batch_size`, `val_accuracy`)
 
-- **The learning rate dominates.** Lines going through lower `lr` values end at higher
-  `val_accuracy`. The lr = 0.0001 line is at the top and the lr = 0.01 line at the bottom.
-  None of the lines cross between the `lr` and `val_accuracy` axes, so the relationship is
-  monotonic in this range.
+- **The learning rate dominates, in reverse.** Between the `lr` and `val_accuracy` axes
+  the lines form an **X**. The lr = 0.01 line leaves the *top* of the `lr` axis and drops
+  to the *bottom* of `val_accuracy` (0.09, dark blue). The lr = 0.0001 line leaves the
+  bottom of `lr` and climbs to the top of `val_accuracy` (0.79, dark red). The two
+  lr = 0.001 runs land in between. Accuracy goes down steadily as lr goes up over this
+  range.
 - **Batch size matters less.** At the same lr = 0.001, batch 64 got 0.650 and batch 32 got
   0.545. That fits the idea that with Adam, a larger batch gives less noisy gradients, so
   the steps are more stable at a learning rate that is a bit too high for fine-tuning.
@@ -203,6 +220,8 @@ comparison does.
   batch-size effect is only a hint, and repeated seeds would be needed to confirm it. The
   sweep also changes one parameter at a time, so it can't show interactions (for example,
   whether batch 64 still helps at lr = 0.0001).
+
+![Parallel coordinates: batch_size, lr, val_accuracy](reports/lab2/screenshots/q8_parallel_coordinates.png)
 
 ### Question 9 - Best run
 
@@ -217,6 +236,8 @@ Its model can be loaded in the next lab with
 `mlflow.pytorch.load_model("models:/m-d497a61db8264802801ae82eee056ed0", device="cpu")`
 (the model was saved on CPU, so load it there and call `.to("cuda")` afterwards if needed), as long as the
 same `mlflow.db` / `mlruns/` are used.
+
+![Runs sorted by val_accuracy descending](reports/lab2/screenshots/q9_runs_sorted_by_val_accuracy.png)
 
 ## Reproduce
 
