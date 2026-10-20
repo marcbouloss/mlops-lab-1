@@ -1,0 +1,15 @@
+.venv/
+.git/
+.dvc/
+data/
+processed/
+mlruns/
+mlartifacts/
+mlflow.db
+models/
+metrics/
+plots/
+reports/
+lab/
+**/__pycache__/
+*.py[cod]
