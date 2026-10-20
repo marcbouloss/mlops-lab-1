@@ -7,13 +7,13 @@
 | Training libraries (`mlflow torch torchvision scikit-learn`) | `pyproject.toml`, `uv.lock` |
 | Local tracking server (`sqlite:///mlflow.db`, artifacts in `./mlruns`) | run from repo root, port 5000 |
 | `mlflow.db` / `mlruns/` ignored | `.gitignore` |
-| Training script with MLflow tracking | [`src/food11/train.py`](src/food11/train.py) |
-| ImageFolder datasets (`food11_processed`, `food11_processed_mini`) | built in Lab 1 by [`src/food11/data.py`](src/food11/data.py), tracked in `data.dvc` |
-| MLflow UI screenshots (one per question) | [`reports/lab2/screenshots/`](reports/lab2/screenshots) |
-| 4 comparison runs | [`reports/lab2/runs.csv`](reports/lab2/runs.csv), [`reports/lab2/metrics.png`](reports/lab2/metrics.png) |
+| Training script with MLflow tracking | [`src/food11/train.py`](../src/food11/train.py) |
+| ImageFolder datasets (`food11_processed`, `food11_processed_mini`) | built in Lab 1 by [`src/food11/data.py`](../src/food11/data.py), tracked in `data.dvc` |
+| MLflow UI screenshots (one per question) | [`reports/lab2/screenshots/`](../reports/lab2/screenshots) |
+| 4 comparison runs | [`reports/lab2/runs.csv`](../reports/lab2/runs.csv), [`reports/lab2/metrics.png`](../reports/lab2/metrics.png) |
 
 **About the dataset:** `train.py` reads the ImageFolder datasets that Lab 1's
-[`src/food11/data.py`](src/food11/data.py) builds (128x128 images, one folder per class):
+[`src/food11/data.py`](../src/food11/data.py) builds (128x128 images, one folder per class):
 
 ```
 data/food11_processed/{training,validation,evaluation}/<class>/*.jpg       9866 / 3430 / 3347 images
@@ -44,7 +44,7 @@ format needs an `input_example`, so the script passes one test image.
 | `ee49c45fab774f1c88671fac348ceccf` | 0.001 | 32 | 0.570 | 1.705 | 0.545 | 0.605 |
 | `03b7dd5fbc474e8ebeeed6d10adbab07` | 0.01 | 32 | 2.542 | 7.699 | 0.091 | 0.118 |
 
-![metric curves](reports/lab2/metrics.png)
+![metric curves](../reports/lab2/metrics.png)
 
 The table shows the last-epoch value of each metric. I made the chart from the MLflow
 metric history (`MlflowClient.get_metric_history`), and it shows the same curves as the
@@ -124,7 +124,7 @@ experiment.` In the UI a new experiment `food11` appears next to `Default`, with
 (Default is `0`) and artifact location `mlruns/1`. On later calls the experiment already
 exists, so `set_experiment` just selects it and new runs are added to it.
 
-![Experiments list: food11 created next to Default](reports/lab2/screenshots/q4_experiments_list.png)
+![Experiments list: food11 created next to Default](../reports/lab2/screenshots/q4_experiments_list.png)
 
 ### Question 5 - `log_param` vs `log_metric`, and why only metrics take `step`
 
@@ -173,11 +173,11 @@ The artifact root is a plain local path. Because of that, the *training script i
 writes these files straight to the filesystem (relative to where it runs, which is the
 repo root). They don't go through the server over HTTP.
 
-![Best run overview: params, metrics, logged model](reports/lab2/screenshots/q6_run_overview_params.png)
+![Best run overview: params, metrics, logged model](../reports/lab2/screenshots/q6_run_overview_params.png)
 
-![Best run metric charts per epoch](reports/lab2/screenshots/q6_run_model_metrics.png)
+![Best run metric charts per epoch](../reports/lab2/screenshots/q6_run_model_metrics.png)
 
-![Logged model artifacts and on-disk path](reports/lab2/screenshots/q6_logged_model_artifacts.png)
+![Logged model artifacts and on-disk path](../reports/lab2/screenshots/q6_logged_model_artifacts.png)
 
 ### Question 7 - Which learning rate gave the best `val_accuracy`? Is higher always better?
 
@@ -201,7 +201,7 @@ rate can also be *too* small (training becomes very slow and underfits in a fixe
 of epochs), so the right value has to be found by experiment, which is what this
 comparison does.
 
-![Compare 4 runs: params and metrics](reports/lab2/screenshots/q7_compare_runs.png)
+![Compare 4 runs: params and metrics](../reports/lab2/screenshots/q7_compare_runs.png)
 
 ### Question 8 - Parallel coordinates plot (`lr`, `batch_size`, `val_accuracy`)
 
@@ -220,7 +220,7 @@ comparison does.
   sweep also changes one parameter at a time, so it can't show interactions (for example,
   whether batch 64 still helps at lr = 0.0001).
 
-![Parallel coordinates: batch_size, lr, val_accuracy](reports/lab2/screenshots/q8_parallel_coordinates.png)
+![Parallel coordinates: batch_size, lr, val_accuracy](../reports/lab2/screenshots/q8_parallel_coordinates.png)
 
 ### Question 9 - Best run
 
@@ -236,7 +236,7 @@ Its model can be loaded in the next lab with
 (the model was saved on CPU, so load it there and call `.to("cuda")` afterwards if needed), as long as the
 same `mlflow.db` / `mlruns/` are used.
 
-![Runs sorted by val_accuracy descending](reports/lab2/screenshots/q9_runs_sorted_by_val_accuracy.png)
+![Runs sorted by val_accuracy descending](../reports/lab2/screenshots/q9_runs_sorted_by_val_accuracy.png)
 
 ## Reproduce
 

@@ -6,8 +6,14 @@ image classification task (11 food categories).
 - **Code**: GitHub — `marcbouloss/mlops-lab-1`
 - **Data + experiments**: DagsHub — `urpx-prog/mlops-lab-1` (DVC remote + MLflow tracking)
 
-- Lab 1 (git + dvc, data preparation, `src/food11/data.py`): see [lab/lab1.md](lab/lab1.md).
-- Lab 2 (MLflow experiment tracking, `src/food11/train.py`): see [LAB2.md](LAB2.md).
+## Labs
+
+All labs build on the same project, so the code lives in one place; each lab has its own answers file.
+
+| Lab | Topic | Answers | Main code | Snapshot |
+|---|---|---|---|---|
+| 1 | git + dvc, data preparation | [lab/lab1.md](lab/lab1.md) | [`src/food11/data.py`](src/food11/data.py), [`data.dvc`](data.dvc) | tag [`lab1`](https://github.com/marcbouloss/mlops-lab-1/tree/lab1) |
+| 2 | training + MLflow tracking | [lab/lab2.md](lab/lab2.md), [reports/lab2/](reports/lab2) | [`src/food11/train.py`](src/food11/train.py) | tag [`lab2`](https://github.com/marcbouloss/mlops-lab-1/tree/lab2) |
 
 ## Stack
 
