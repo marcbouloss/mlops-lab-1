@@ -1,0 +1,46 @@
+$ docker compose down
+Container mlops-lab-1-frontend-1 Removed
+Container mlops-lab-1-inference-1 Removed
+Container mlops-lab-1-mlflow-1 Removed
+Network mlops-lab-1_default Removed
+$ docker volume ls
+DRIVER    VOLUME NAME
+local     mlops-lab-1_mlflow-data
+$ docker compose up -d
+Network mlops-lab-1_default Created
+Container mlops-lab-1-mlflow-1 Created
+Container mlops-lab-1-inference-1 Created
+Container mlops-lab-1-frontend-1 Created
+Container mlops-lab-1-mlflow-1 Started
+Container mlops-lab-1-mlflow-1 Healthy
+Container mlops-lab-1-inference-1 Started
+Container mlops-lab-1-frontend-1 Started
+food11@champion -> version 2
+
+$ docker compose down -v
+Container mlops-lab-1-frontend-1 Removed
+Container mlops-lab-1-inference-1 Removed
+Container mlops-lab-1-mlflow-1 Removed
+Volume mlops-lab-1_mlflow-data Removed
+Network mlops-lab-1_default Removed
+$ docker volume ls
+DRIVER    VOLUME NAME
+$ docker compose up -d
+Volume mlops-lab-1_mlflow-data Created
+Network mlops-lab-1_default Created
+Container mlops-lab-1-mlflow-1 Created
+Container mlops-lab-1-inference-1 Created
+Container mlops-lab-1-frontend-1 Created
+Container mlops-lab-1-mlflow-1 Started
+Container mlops-lab-1-mlflow-1 Healthy
+Container mlops-lab-1-inference-1 Started
+Container mlops-lab-1-frontend-1 Started
+food11@champion -> {'error_code': 'RESOURCE_DOES_NOT_EXIST', 'message': 'Registered Model with name=food11 not found', 'sqlstate': 'KAM00', 'error_class': 'RESOURCE_NOT_FOUND'}
+$ docker compose ps -a
+SERVICE     STATUS
+frontend    Up 40 seconds
+inference   Restarting (3) 1 second ago
+mlflow      Up 46 seconds (healthy)
+$ docker compose logs inference | grep -E "RESOURCE_DOES_NOT_EXIST|startup failed" | tail -2
+Application startup failed. Exiting.
+RESOURCE_DOES_NOT_EXIST: Registered Model with name=food11 not found

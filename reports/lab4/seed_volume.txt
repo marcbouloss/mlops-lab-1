@@ -1,0 +1,22 @@
+$ docker compose create            # creates the network, the named volume and the containers, starts nothing
+ Volume mlops-lab-1_mlflow-data Created
+ Network mlops-lab-1_default Created
+ Container mlops-lab-1-mlflow-1 Created
+ Container mlops-lab-1-inference-1 Created
+ Container mlops-lab-1-frontend-1 Created
+$ docker volume ls
+DRIVER    VOLUME NAME
+local     mlops-lab-1_mlflow-data
+# copy the Lab 2/3 tracking data (runs + food11 registry) from the repo into the named volume, once
+$ docker run --rm -v mlops-lab-1_mlflow-data:/mlflow-data -v "${PWD}:/host:ro" python:3.11-slim sh -c "cp /host/mlflow.db /mlflow-data/ && mkdir -p /mlflow-data/mlruns && cp -r /host/mlruns/1 /mlflow-data/mlruns/ && ls -R /mlflow-data | head && du -sh /mlflow-data"
+/mlflow-data:
+mlflow.db
+mlruns
+
+/mlflow-data/mlruns:
+1
+
+/mlflow-data/mlruns/1:
+models
+
+205M	/mlflow-data

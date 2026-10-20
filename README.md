@@ -15,6 +15,7 @@ All labs build on the same project, so the code lives in one place; each lab has
 | 1 | git + dvc, data preparation | [lab/lab1.md](lab/lab1.md) | [`src/food11/data.py`](src/food11/data.py), [`data.dvc`](data.dvc) | tag [`lab1`](https://github.com/marcbouloss/mlops-lab-1/tree/lab1) |
 | 2 | training + MLflow tracking | [lab/lab2.md](lab/lab2.md), [reports/lab2/](reports/lab2) | [`src/food11/train.py`](src/food11/train.py) | tag [`lab2`](https://github.com/marcbouloss/mlops-lab-1/tree/lab2) |
 | 3 | model registry + Docker serving | [lab/lab3.md](lab/lab3.md), [reports/lab3/](reports/lab3) | [`src/food11/serve.py`](src/food11/serve.py), [`Dockerfile`](Dockerfile), [`.dockerignore`](.dockerignore) | tag [`lab3`](https://github.com/marcbouloss/mlops-lab-1/tree/lab3) |
+| 4 | Docker Compose: mlflow + inference + frontend | [lab/lab4.md](lab/lab4.md), [reports/lab4/](reports/lab4) | [`docker-compose.yml`](docker-compose.yml), [`mlflow/Dockerfile`](mlflow/Dockerfile), [`frontend/`](frontend) | tag [`lab4`](https://github.com/marcbouloss/mlops-lab-1/tree/lab4) |
 
 ## Stack
 
@@ -36,6 +37,9 @@ src/food11/data.py     # Lab 1: raw -> food11_processed(_mini)
 src/food11/train.py    # Lab 2: resnet18 + MLflow tracking
 src/food11/serve.py    # Lab 3: FastAPI serving models:/food11@champion
 Dockerfile             # Lab 3: multi-stage image (uv builder -> python slim)
+docker-compose.yml     # Lab 4: mlflow + inference + frontend (docker compose up --build)
+mlflow/Dockerfile      # Lab 4: tracking server + registry image (state in the mlflow-data volume)
+frontend/              # Lab 4: Streamlit upload page (app.py) + its Dockerfile
 processed/             # split manifests (CSV), pipeline output
 src/preprocess.py      # stage 1: raw folders -> train/val/test.csv
 src/train.py           # stage 2: transfer learning -> models/model.pt

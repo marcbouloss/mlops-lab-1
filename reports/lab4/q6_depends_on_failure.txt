@@ -1,0 +1,38 @@
+# mlflow not accepting connections while inference starts (simulated by stopping it):
+$ docker compose stop mlflow && docker compose restart inference
+ Container mlops-lab-1-mlflow-1 Stopped 
+ Container mlops-lab-1-inference-1 Started 
+$ docker compose logs inference --tail 4
+inference-1  | INFO:     Application shutdown complete.
+inference-1  | INFO:     Finished server process [1]
+inference-1  | INFO:     Started server process [1]
+inference-1  | INFO:     Waiting for application startup.
+$ docker compose ps -a
+SERVICE     STATUS
+frontend    Up 3 minutes
+inference   Up 26 seconds
+mlflow      Exited (0) 27 seconds ago
+
+# mlflow comes back within the mlflow client's retry window: the pending request retries and startup completes (log: 'Application startup complete')
+$ docker compose start mlflow; sleep 20; docker compose ps -a
+ Container mlops-lab-1-mlflow-1 Started 
+SERVICE     STATUS
+frontend    Up 4 minutes
+inference   Up 47 seconds
+mlflow      Up 20 seconds
+
+# mlflow down for longer than the client retry window (7 retries, exponential backoff, about 4 min):
+$ docker compose stop mlflow && docker compose restart inference   # then wait 6 minutes
+ Container mlops-lab-1-mlflow-1 Stopped 
+ Container mlops-lab-1-inference-1 Started 
+inference state after 284s: exited (exit code 3)
+$ docker compose logs inference --tail 3
+inference-1  | mlflow.exceptions.MlflowException: API request to http://mlflow:5000/api/2.0/mlflow/registered-models/alias failed with exception HTTPConnectionPool(host='mlflow', port=5000): Max retries exceeded with url: /api/2.0/mlflow/registered-models/alias?name=food11&alias=champion (Caused by 
+inference-1  | 
+inference-1  | ERROR:    Application startup failed. Exiting.
+$ docker compose start mlflow; sleep 20; docker compose ps -a
+ Container mlops-lab-1-mlflow-1 Started 
+SERVICE     STATUS
+frontend    Up 10 minutes
+inference   Exited (3) 24 seconds ago
+mlflow      Up 20 seconds

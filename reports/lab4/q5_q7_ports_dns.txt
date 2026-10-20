@@ -1,0 +1,22 @@
+$ docker compose ps
+NAME                      SERVICE     STATUS              PORTS
+mlops-lab-1-frontend-1    frontend    Up About a minute   0.0.0.0:8501->8501/tcp, [::]:8501->8501/tcp
+mlops-lab-1-inference-1   inference   Up About a minute   8000/tcp
+mlops-lab-1-mlflow-1      mlflow      Up About a minute   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
+
+# from the host: only the published ports answer
+$ curl http://127.0.0.1:5000/health
+OK  (HTTP 200)
+$ curl http://127.0.0.1:8501/_stcore/health
+ok  (HTTP 200)
+$ curl http://127.0.0.1:8000/health
+  (HTTP 000)
+  -> connection failed (port 8000 is not published)
+
+# inside the compose network: service names resolve through Compose DNS
+$ docker compose exec frontend python -c "import socket; print(...)"
+mlflow -> 172.18.0.2
+inference -> 172.18.0.3
+frontend -> 172.18.0.4
+$ docker compose exec frontend python -c "import requests; print(requests.get(\"http://inference:8000/health\").text)"
+{"status":"ok"}

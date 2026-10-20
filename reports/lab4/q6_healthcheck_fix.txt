@@ -1,0 +1,16 @@
+# with healthcheck + condition: service_healthy + restart: on-failure
+$ docker compose up -d   (recreates mlflow and inference with the new config)
+Container mlops-lab-1-mlflow-1 Recreated
+Container mlops-lab-1-inference-1 Recreated
+Container mlops-lab-1-mlflow-1 Started
+Container mlops-lab-1-mlflow-1 Waiting
+Container mlops-lab-1-mlflow-1 Healthy
+Container mlops-lab-1-inference-1 Started
+(up returned after 7s)
+$ docker compose ps
+SERVICE     STATUS
+frontend    Up 10 minutes
+inference   Up Less than a second
+mlflow      Up 6 seconds (healthy)
+$ docker inspect -f "{{.HostConfig.RestartPolicy.Name}}" mlops-lab-1-inference-1
+on-failure

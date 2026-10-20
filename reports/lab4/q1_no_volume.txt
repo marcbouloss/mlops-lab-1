@@ -1,0 +1,16 @@
+$ docker run -d --name mlflow-standalone -p 5050:5000 mlops-lab-1-mlflow   # no volume
+$ (create an experiment "q1-test" through the API)
+{
+  "experiment_id": "1"
+}
+experiments: ['q1-test', 'Default']
+$ docker stop mlflow-standalone && docker rm mlflow-standalone
+$ docker run -d --name mlflow-standalone-2 -p 5050:5000 mlops-lab-1-mlflow
+experiments: ['Default']
+$ docker inspect -f "{{json .Mounts}}" mlflow-standalone-2
+[]
+$ docker exec mlflow-standalone-2 ls -la /mlflow-data    (a fresh, empty database in the container layer)
+total 868
+drwxr-xr-x 2 root root   4096 Oct 20 18:51 .
+drwxr-xr-x 1 root root   4096 Oct 20 18:51 ..
+-rw-r--r-- 1 root root 876544 Oct 20 18:51 mlflow.db

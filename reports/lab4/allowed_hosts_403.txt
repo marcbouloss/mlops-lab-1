@@ -1,0 +1,4 @@
+# mlflow 3 server WITHOUT "mlflow:5000" in --allowed-hosts (the Lab 3 host server), called the way the inference container calls it:
+$ curl -H "Host: mlflow:5000" "http://127.0.0.1:5000/api/2.0/mlflow/registered-models/alias?name=food11&alias=champion"
+Invalid Host header - possible DNS rebinding attack detected
+HTTP 403

@@ -1,0 +1,19 @@
+# before: champion -> version 1
+$ (upload Bread/0_0.jpg in the frontend)
+Prediction: Bread (29.1%)
+
+# register a new version from another Lab 2 run (lr=0.001, batch_size=64) and move champion to it
+$ uv run python -c "import mlflow; mlflow.set_tracking_uri('http://127.0.0.1:5000'); v = mlflow.register_model('runs:/ed6a7111b61d46c59e6d09b7968b4775/model', 'food11'); mlflow.MlflowClient().set_registered_model_alias('food11', 'champion', v.version)"
+Created version '2' of model 'food11'.
+champion -> 2
+
+# same upload again, inference NOT restarted
+Prediction: Bread (29.1%)
+
+$ docker compose restart inference
+Container mlops-lab-1-inference-1 Started
+# same upload again, after restart
+Prediction: Fried food (31.6%)
+$ docker compose logs inference --since 2m | grep -E "Downloading artifacts: 100%|startup complete"
+Downloading artifacts: 100%|██████████| 7/7 [00:00<00:00, 36.83it/s]
+Application startup complete.
