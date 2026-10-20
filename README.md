@@ -6,7 +6,8 @@ image classification task (11 food categories).
 - **Code**: GitHub — `marcbouloss/mlops-lab-1`
 - **Data + experiments**: DagsHub — `urpx-prog/mlops-lab-1` (DVC remote + MLflow tracking)
 
-Lab 2 (MLflow experiment tracking, `src/food11/train.py`): see [LAB2.md](LAB2.md).
+- Lab 1 (git + dvc, data preparation, `src/food11/data.py`): see [lab/lab1.md](lab/lab1.md).
+- Lab 2 (MLflow experiment tracking, `src/food11/train.py`): see [LAB2.md](LAB2.md).
 
 ## Stack
 
@@ -21,8 +22,12 @@ Lab 2 (MLflow experiment tracking, `src/food11/train.py`): see [LAB2.md](LAB2.md
 ## Layout
 
 ```
-data/food11_raw/      # raw images, DVC-tracked (data.dvc)
-processed/        # split manifests (CSV), pipeline output
+data/food11_raw/              # raw images                      \
+data/food11_processed/        # 128x128, one folder per class    } DVC-tracked (data.dvc)
+data/food11_processed_mini/   # same, <=100 images per class     /
+src/food11/data.py     # Lab 1: raw -> food11_processed(_mini)
+src/food11/train.py    # Lab 2: resnet18 + MLflow tracking
+processed/             # split manifests (CSV), pipeline output
 src/preprocess.py      # stage 1: raw folders -> train/val/test.csv
 src/train.py           # stage 2: transfer learning -> models/model.pt
 src/evaluate.py        # stage 3: metrics + confusion matrix

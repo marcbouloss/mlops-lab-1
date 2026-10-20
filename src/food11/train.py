@@ -13,7 +13,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
 
-DATASETS = {"processed": "processed/food11_processed", "mini": "processed/food11_processed_mini"}
+DATASETS = {"processed": "data/food11_processed", "mini": "data/food11_processed_mini"}  # built by src/food11/data.py
 MEAN, STD = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
 TRAIN_TF = transforms.Compose([
     transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
@@ -61,9 +61,9 @@ def main() -> None:
     torch.manual_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     root = DATASETS[args.dataset]
-    train_ds = datasets.ImageFolder(f"{root}/train", TRAIN_TF)
-    val_ds = datasets.ImageFolder(f"{root}/val", EVAL_TF)
-    test_ds = datasets.ImageFolder(f"{root}/test", EVAL_TF)
+    train_ds = datasets.ImageFolder(f"{root}/training", TRAIN_TF)
+    val_ds = datasets.ImageFolder(f"{root}/validation", EVAL_TF)
+    test_ds = datasets.ImageFolder(f"{root}/evaluation", EVAL_TF)
     kw = dict(batch_size=args.batch_size, num_workers=args.num_workers, pin_memory=device == "cuda")
     train_dl = DataLoader(train_ds, shuffle=True, **kw)
     val_dl = DataLoader(val_ds, **kw)

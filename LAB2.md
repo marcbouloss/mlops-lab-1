@@ -8,22 +8,21 @@
 | Local tracking server (`sqlite:///mlflow.db`, artifacts in `./mlruns`) | run from repo root, port 5000 |
 | `mlflow.db` / `mlruns/` ignored | `.gitignore` |
 | Training script with MLflow tracking | [`src/food11/train.py`](src/food11/train.py) |
-| ImageFolder datasets (`food11_processed`, `food11_processed_mini`) | `imagefolders` stage in `dvc.yaml`, [`src/build_imagefolders.py`](src/build_imagefolders.py) |
+| ImageFolder datasets (`food11_processed`, `food11_processed_mini`) | built in Lab 1 by [`src/food11/data.py`](src/food11/data.py), tracked in `data.dvc` |
 | MLflow UI screenshots (one per question) | [`reports/lab2/screenshots/`](reports/lab2/screenshots) |
 | 4 comparison runs | [`reports/lab2/runs.csv`](reports/lab2/runs.csv), [`reports/lab2/metrics.png`](reports/lab2/metrics.png) |
 
-**About the dataset:** in Lab 1 the raw Food-11 images stayed in flat folders
-(`<classid>_<idx>.jpg`), and "processed" meant CSV files listing the train/val/test
-splits. `torchvision.datasets.ImageFolder` needs one folder per class, so a new DVC stage
-turns those CSVs into:
+**About the dataset:** `train.py` reads the ImageFolder datasets that Lab 1's
+[`src/food11/data.py`](src/food11/data.py) builds (128x128 images, one folder per class):
 
 ```
-processed/food11_processed/{train,val,test}/<class>/*.jpg        9866 / 3430 / 3347 images
-processed/food11_processed_mini/{train,val,test}/<class>/*.jpg   50 / 20 / 20 per class (550 / 220 / 220)
+data/food11_processed/{training,validation,evaluation}/<class>/*.jpg       9866 / 3430 / 3347 images
+data/food11_processed_mini/{training,validation,evaluation}/<class>/*.jpg  at most 100 per class
 ```
 
-Files are hard-linked where possible, so they take no extra disk space in the workspace.
-Both folders are DVC outputs.
+> Note: the four runs below were made before the Lab 1 fix, on an earlier
+> layout (`processed/food11_processed_mini/{train,val,test}`, full-size images,
+> 50 / 20 / 20 per class). The script and the logged runs are unchanged otherwise.
 
 **What `train.py` does:** loads data with `ImageFolder` and `DataLoader`. Starts from an
 ImageNet-pretrained `resnet18` and replaces `fc` with `Linear(512, 11)`. Fine-tunes all
@@ -243,8 +242,8 @@ same `mlflow.db` / `mlruns/` are used.
 
 ```bash
 uv sync
-uv run dvc pull                       # raw data + ImageFolder datasets
-uv run dvc repro imagefolders         # or rebuild the ImageFolder trees from the CSV splits
+uv run dvc pull                       # raw data + ImageFolder datasets (data.dvc)
+uv run python ./src/food11/data.py    # or rebuild the ImageFolder datasets from the raw images
 uv run mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns
 uv run python ./src/food11/train.py --dataset mini --epochs 5 --lr 0.0001 --batch-size 32
 ```
