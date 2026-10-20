@@ -4,7 +4,8 @@ Reproducible MLOps pipeline for the [Food-11](https://www.kaggle.com/datasets/tr
 image classification task (11 food categories).
 
 - **Code**: GitHub — `marcbouloss/mlops-lab-1`
-- **Data + experiments**: DagsHub — `urpx-prog/mlops-lab-1` (DVC remote + MLflow tracking)
+- **Data**: DagsHub — `urpx-prog/mlops-lab-1` (DVC remote)
+- **Experiments + model registry**: MLflow, as a local tracking server (Labs 2-3) and as the `mlflow` service of the Docker Compose stack (Lab 4)
 
 ## Labs
 
@@ -24,8 +25,10 @@ All labs build on the same project, so the code lives in one place; each lab has
 | Environment / deps | `uv` |
 | Data versioning | `DVC` (remote: DagsHub) |
 | Pipeline orchestration | `dvc.yaml` (preprocess → train → evaluate) |
-| Experiment tracking | MLflow (hosted on DagsHub) |
+| Experiment tracking + registry | MLflow 3.16: local server on `127.0.0.1:5000` (Labs 2-3), `mlflow` Compose service with a named volume (Lab 4) |
 | Model | torchvision transfer learning (MobileNetV3-Small / ResNet18) |
+| Serving | FastAPI + uvicorn, loads `models:/food11@champion` (Lab 3) |
+| Containers | Docker multi-stage image (Lab 3), Docker Compose: mlflow + inference + Streamlit frontend (Lab 4) |
 
 ## Layout
 
@@ -64,9 +67,26 @@ uv run dvc metrics show
 uv run dvc plots show
 ```
 
-### Experiment tracking (optional)
+## Experiment tracking (MLflow)
 
-Set DagsHub credentials so training logs to MLflow:
+**Local tracking server** (Labs 2-3), from the repo root. `src/food11/train.py` and
+`src/food11/serve.py` use it by default:
+
+```bash
+uv run mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --artifacts-destination ./mlruns --allowed-hosts "localhost:*,127.0.0.1:*,host.docker.internal:*"
+```
+
+**Full stack with Docker Compose** (Lab 4): mlflow UI at http://127.0.0.1:5000, upload
+page at http://127.0.0.1:8501. Its state lives in the `mlflow-data` volume. See
+[lab/lab4.md](lab/lab4.md) for how the volume was seeded with the Lab 2-3 runs.
+
+```bash
+docker compose up --build -d
+docker compose down          # keeps the mlflow-data volume (add -v to delete it)
+```
+
+**Optional, DVC pipeline only:** `src/train.py` (`dvc repro`) logs to whatever
+`MLFLOW_TRACKING_URI` points to, for example the DagsHub-hosted MLflow:
 
 ```bash
 export MLFLOW_TRACKING_URI=https://dagshub.com/urpx-prog/mlops-lab-1.mlflow
