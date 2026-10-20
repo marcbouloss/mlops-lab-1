@@ -1,0 +1,25 @@
+$ docker stop food11-api && docker rm food11-api
+food11-api
+food11-api
+$ docker run -d --name food11-api-2 -p 8000:8000 -e MLFLOW_TRACKING_URI=http://host.docker.internal:5000 food11-api:latest
+4dcf563f182c21f11a536edae5df7c431562c3eb36b4f8397825d633ee9e94d3
+$ docker logs food11-api-2   (startup, filtered)
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+Downloading artifacts: 100%|██████████| 8/8 [00:02<00:00,  3.03it/s]
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+$ curl -X POST -F "file=@data/food11_processed_mini/validation/Soup/9_0.jpg" http://127.0.0.1:8000/predict
+{"category":"Soup","confidence":0.9991}
+$ grep artifacts mlruns/server.log   (the new container downloading the model through the tracking server)
+2026/10/20 21:33:48 INFO:     127.0.0.1:65090 - "GET /api/2.0/mlflow-artifacts/artifacts/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/registered_model_meta HTTP/1.1" 200 OK
+2026/10/20 21:33:48 INFO:     127.0.0.1:65089 - "GET /api/2.0/mlflow-artifacts/artifacts/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/serving_input_example.json HTTP/1.1" 200 OK
+2026/10/20 21:33:48 INFO:     127.0.0.1:65088 - "GET /api/2.0/mlflow-artifacts/artifacts/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/data/model.pt2 HTTP/1.1" 200 OK
+2026/10/20 21:33:48 INFO:     127.0.0.1:65091 - "GET /api/2.0/mlflow-artifacts/artifacts/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/MLmodel HTTP/1.1" 200 OK
+2026/10/20 21:33:48 INFO:     127.0.0.1:65085 - "GET /api/2.0/mlflow-artifacts/artifacts/1/models/m-d497a61db8264802801ae82eee056ed0/artifacts/input_example.json HTTP/1.1" 200 OK
+
+# Same image, but no tracking server reachable (wrong port): the API cannot start, the model is not in the image
+$ docker run --name food11-api-noserver -e MLFLOW_TRACKING_URI=http://host.docker.internal:5999 -e MLFLOW_HTTP_REQUEST_MAX_RETRIES=0 food11-api:latest
+    raise MlflowException(f"API request to {url} failed with exception {e}")
+mlflow.exceptions.MlflowException: API request to http://host.docker.internal:5999/api/2.0/mlflow/registered-models/alias failed with exception HTTPConnectionPool(host='host.docker.internal', port=5999): Max retries exceeded with url: /api/2.0/mlflow/registered-models/alias?name=food11&alias=champion (Caused by NewConnectionError("HTTPConnection(host='host.docker.internal', port=5999): Failed to establish a new connection: [Errno 111] Connection refused"))
+ERROR:    Application startup failed. Exiting.

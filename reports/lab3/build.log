@@ -1,0 +1,493 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 770B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.12
+#3 ...
+
+#4 [internal] load metadata for ghcr.io/astral-sh/uv:0.11.3
+#4 DONE 3.3s
+
+#3 [internal] load metadata for docker.io/library/python:3.12
+#3 DONE 3.9s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 173B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 708.54kB 0.1s done
+#6 DONE 0.1s
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 resolve ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823 0.1s done
+#7 DONE 0.2s
+
+#8 [stage-1 1/4] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+#8 resolve docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1 0.1s done
+#8 ...
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 resolve docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe 0.1s done
+#9 DONE 0.3s
+
+#8 [stage-1 1/4] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+#8 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e
+#8 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.9s done
+#8 extracting sha256:75b6a36c64a1cf3520fc4b4aae4739d5caa8a6a05c27835a920a61784c9c32f8 0.1s done
+#8 DONE 1.2s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:1d5ee7e42ed8b29a45f8c80036ae3b275419382ad477bdba0b54acd6b04b7ac9 250B / 250B 0.4s done
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 0B / 25.73MB 0.8s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 0B / 6.09MB 0.8s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 0B / 236.96MB 0.8s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 0B / 67.81MB 0.5s
+#9 ...
+
+#8 [stage-1 1/4] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+#8 extracting sha256:6912e23eb44595b44dc6d9882b34f305ad6f6e9667cec70b13e5dbc4f8cd97f4 0.4s done
+#8 extracting sha256:bbc5a12237474ec0b23b5051260d56d6436a24d70d9cad961adebe7a037ed813 0.0s done
+#8 DONE 1.7s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 ...
+
+#10 [stage-1 2/4] WORKDIR /app
+#10 DONE 0.1s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 2.10MB / 25.73MB 3.6s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 4.19MB / 25.73MB 4.9s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 1.05MB / 6.09MB 5.1s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 1.05MB / 236.96MB 5.8s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 1.05MB / 67.81MB 5.5s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 6.29MB / 25.73MB 6.4s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 8.39MB / 25.73MB 8.2s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 2.10MB / 6.09MB 9.0s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 10.49MB / 25.73MB 9.6s
+#9 ...
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 sha256:7769ce87d54e164301b70633a857e5ecd69cbcc7fde6a17b0b8c30b87cd486ff 95B / 95B 0.5s done
+#7 sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 5.24MB / 25.02MB 10.0s
+#7 ...
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 12.58MB / 25.73MB 10.9s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 2.10MB / 236.96MB 10.9s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 3.15MB / 67.81MB 10.6s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 14.68MB / 25.73MB 12.6s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 3.15MB / 6.09MB 12.7s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 16.78MB / 25.73MB 14.1s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 18.87MB / 25.73MB 15.0s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 4.19MB / 236.96MB 16.0s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 4.19MB / 67.81MB 15.7s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 20.97MB / 25.73MB 16.2s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 4.19MB / 6.09MB 16.2s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 23.07MB / 25.73MB 18.4s
+#9 ...
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 11.53MB / 25.02MB 20.4s
+#7 ...
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 25.17MB / 25.73MB 20.7s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 5.24MB / 236.96MB 21.1s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 5.24MB / 67.81MB 20.8s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 4.19MB / 6.09MB 21.3s
+#9 sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 25.73MB / 25.73MB 21.5s done
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 5.24MB / 6.09MB 21.4s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 0B / 25.64MB 0.2s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 2.10MB / 25.64MB 2.4s
+#9 sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 6.09MB / 6.09MB 25.2s done
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 0B / 49.39MB 0.2s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 4.19MB / 25.64MB 4.7s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 7.34MB / 236.96MB 26.2s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 7.34MB / 67.81MB 25.9s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 6.29MB / 25.64MB 7.2s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 1.05MB / 49.39MB 5.3s
+#9 ...
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 15.73MB / 25.02MB 30.6s
+#7 ...
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 8.39MB / 25.64MB 9.3s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 10.49MB / 236.96MB 31.3s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 9.44MB / 67.81MB 31.0s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 10.49MB / 25.64MB 11.2s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 12.58MB / 25.64MB 13.6s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 2.10MB / 49.39MB 10.3s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 12.58MB / 236.96MB 36.4s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 12.58MB / 67.81MB 36.1s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 14.68MB / 25.64MB 15.4s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 16.78MB / 25.64MB 16.8s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 18.87MB / 25.64MB 18.4s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 4.19MB / 49.39MB 15.4s
+#9 ...
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 23.07MB / 25.02MB 40.8s
+#7 ...
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 20.97MB / 25.64MB 19.6s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 15.73MB / 236.96MB 41.5s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 14.68MB / 67.81MB 41.2s
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 23.07MB / 25.64MB 20.7s
+#9 ...
+
+#7 FROM ghcr.io/astral-sh/uv:0.11.3@sha256:90bbb3c16635e9627f49eec6539f956d70746c409209041800a0280b93152823
+#7 sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 25.02MB / 25.02MB 42.6s done
+#7 extracting sha256:550a33ac40fbb36244b6074f21f4fd233e805bae320fce6b0338985d2db631c8 0.5s done
+#7 extracting sha256:7769ce87d54e164301b70633a857e5ecd69cbcc7fde6a17b0b8c30b87cd486ff 0.0s done
+#7 DONE 43.3s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 25.64MB / 25.64MB 21.8s done
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 18.87MB / 67.81MB 43.8s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 7.34MB / 49.39MB 18.9s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 22.02MB / 236.96MB 46.6s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 23.07MB / 67.81MB 46.3s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 10.49MB / 49.39MB 22.0s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 27.26MB / 67.81MB 48.6s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 13.63MB / 49.39MB 24.1s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 30.41MB / 236.96MB 51.7s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 31.46MB / 67.81MB 51.4s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 16.78MB / 49.39MB 26.7s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 35.65MB / 67.81MB 53.2s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 19.92MB / 49.39MB 28.7s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 39.85MB / 67.81MB 55.6s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 37.75MB / 236.96MB 56.8s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 23.07MB / 49.39MB 32.1s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 44.04MB / 67.81MB 58.3s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 26.21MB / 49.39MB 33.7s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 29.36MB / 49.39MB 35.4s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 48.23MB / 67.81MB 60.6s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 47.19MB / 236.96MB 61.9s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 32.51MB / 49.39MB 37.3s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 52.43MB / 67.81MB 62.7s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 35.65MB / 49.39MB 39.3s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 56.62MB / 67.81MB 64.6s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 38.80MB / 49.39MB 41.7s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 54.53MB / 236.96MB 67.0s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 60.82MB / 67.81MB 68.4s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 41.94MB / 49.39MB 46.3s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 57.67MB / 236.96MB 72.1s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 65.01MB / 67.81MB 73.0s
+#9 sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 67.81MB / 67.81MB 75.5s done
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 44.04MB / 49.39MB 51.4s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 60.82MB / 236.96MB 77.2s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 47.19MB / 49.39MB 53.2s
+#9 sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 49.39MB / 49.39MB 54.5s done
+#9 extracting sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671
+#9 extracting sha256:4846f29007305297af653c57bf9b60ba8f676a38695c68d98460063442581671 1.4s done
+#9 extracting sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d
+#9 extracting sha256:62fe2e747f69f2f414c7e9eb1553155cf0a658398f0462557f458821dce2b29d 0.7s done
+#9 extracting sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 69.21MB / 236.96MB 82.3s
+#9 extracting sha256:4dc3950125ebc9ed195e1101fc6c02e2fce113ba0f53bfb05b2cdf58747df9af 1.9s done
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 81.79MB / 236.96MB 86.8s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 94.37MB / 236.96MB 91.0s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 106.95MB / 236.96MB 93.9s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 119.54MB / 236.96MB 96.3s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 132.12MB / 236.96MB 99.0s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 144.70MB / 236.96MB 100.9s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 157.29MB / 236.96MB 102.6s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 169.87MB / 236.96MB 105.6s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 182.45MB / 236.96MB 109.2s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 195.04MB / 236.96MB 112.3s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 207.62MB / 236.96MB 116.1s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 220.20MB / 236.96MB 120.4s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 232.78MB / 236.96MB 125.2s
+#9 sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 236.96MB / 236.96MB 126.4s done
+#9 extracting sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607
+#9 extracting sha256:b2eb680928d477abf960adfa8bb00fa681dac38ca5f624850072ed2976a80607 5.2s done
+#9 DONE 132.0s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 extracting sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81
+#9 extracting sha256:ee0642b8714bc9f14387af26100d2c0bcbb301e85fcaf9834364f7166323ba81 0.2s done
+#9 extracting sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521
+#9 extracting sha256:99ceb936471fed91d914bcb7d31780d10aef96197ae1ce69bf7dbd108cf96521 0.6s done
+#9 DONE 132.8s
+
+#9 [builder 1/5] FROM docker.io/library/python:3.12@sha256:42dc0ee40d7707e2f2ee506a1cbe52e09ab11c207c5b429342638f83177601fe
+#9 extracting sha256:1d5ee7e42ed8b29a45f8c80036ae3b275419382ad477bdba0b54acd6b04b7ac9 0.0s done
+#9 DONE 132.8s
+
+#11 [builder 2/5] COPY --from=ghcr.io/astral-sh/uv:0.11.3 /uv /bin/uv
+#11 DONE 6.9s
+
+#12 [builder 3/5] WORKDIR /app
+#12 DONE 0.2s
+
+#13 [builder 4/5] COPY pyproject.toml uv.lock ./
+#13 DONE 0.4s
+
+#14 [builder 5/5] RUN uv sync --frozen --no-dev --no-install-project
+#14 0.854 Using CPython 3.12.15 interpreter at: /usr/local/bin/python3
+#14 0.854 Creating virtual environment at: .venv
+#14 1.526 Downloading pygments (1.2MiB)
+#14 1.527 Downloading fonttools (5.2MiB)
+#14 1.527 Downloading mlflow-tracing (1.7MiB)
+#14 1.527 Downloading sympy (6.0MiB)
+#14 1.529 Downloading cryptography (4.5MiB)
+#14 1.529 Downloading lxml (5.0MiB)
+#14 1.622 Downloading kiwisolver (1.4MiB)
+#14 1.622 Downloading pydantic-core (2.0MiB)
+#14 1.623 Downloading pillow (6.6MiB)
+#14 1.624 Downloading botocore (15.1MiB)
+#14 1.641 Downloading mlflow (11.0MiB)
+#14 1.642 Downloading scikit-learn (8.7MiB)
+#14 1.642 Downloading aiohttp (1.7MiB)
+#14 1.642 Downloading dulwich (1.4MiB)
+#14 1.643 Downloading pandas (10.5MiB)
+#14 1.693 Downloading networkx (2.0MiB)
+#14 1.697 Downloading setuptools (1.0MiB)
+#14 1.698 Downloading mlflow-skinny (3.5MiB)
+#14 1.699 Downloading scipy (33.7MiB)
+#14 1.699 Downloading matplotlib (9.6MiB)
+#14 1.701 Downloading numpy (15.9MiB)
+#14 1.701 Downloading pyarrow (47.8MiB)
+#14 1.701 Downloading sqlalchemy (3.2MiB)
+#14 1.703 Downloading pygit2 (5.6MiB)
+#14 1.703 Downloading torch (181.5MiB)
+#14 2.243 Downloading torchvision (1.8MiB)
+#14 4.406  Downloaded torchvision
+#14 55.18    Building antlr4-python3-runtime==4.9.3
+#14 57.61  Downloaded setuptools
+#14 66.22  Downloaded pygments
+#14 68.84  Downloaded kiwisolver
+#14 74.24  Downloaded dulwich
+#14 77.93  Downloaded torch
+#14 83.75  Downloaded mlflow-tracing
+#14 85.51  Downloaded aiohttp
+#14 93.03  Downloaded networkx
+#14 93.79  Downloaded pydantic-core
+#14 93.84       Built antlr4-python3-runtime==4.9.3
+#14 162.8  Downloaded sqlalchemy
+#14 180.9  Downloaded mlflow-skinny
+#14 223.1  Downloaded cryptography
+#14 234.6  Downloaded fonttools
+#14 235.7  Downloaded lxml
+#14 237.7  Downloaded pygit2
+#14 242.7  Downloaded sympy
+#14 252.1  Downloaded pillow
+#14 278.1  Downloaded scikit-learn
+#14 280.5  Downloaded matplotlib
+#14 283.4  Downloaded pandas
+#14 284.6  Downloaded mlflow
+#14 291.6  Downloaded botocore
+#14 293.3  Downloaded numpy
+#14 363.8  Downloaded scipy
+#14 376.2  Downloaded pyarrow
+#14 376.2 Prepared 179 packages in 6m 15s
+#14 383.3 Installed 179 packages in 7.16s
+#14 385.9 Bytecode compiled 15853 files in 2.56s
+#14 385.9  + aiohappyeyeballs==2.7.1
+#14 385.9  + aiohttp==3.14.3
+#14 385.9  + aiohttp-retry==2.9.1
+#14 385.9  + aiosignal==1.4.0
+#14 385.9  + alembic==1.19.2
+#14 385.9  + amqp==5.3.1
+#14 385.9  + annotated-doc==0.0.5
+#14 385.9  + annotated-types==0.8.0
+#14 385.9  + antlr4-python3-runtime==4.9.3
+#14 385.9  + anyio==4.15.1
+#14 385.9  + appdirs==1.4.4
+#14 385.9  + asyncssh==2.24.0
+#14 385.9  + atpublic==7.0.0
+#14 385.9  + attrs==26.1.0
+#14 385.9  + backoff==2.2.1
+#14 385.9  + billiard==4.2.4
+#14 385.9  + blinker==1.9.0
+#14 385.9  + boto3==1.43.91
+#14 385.9  + botocore==1.43.91
+#14 385.9  + cachetools==7.1.8
+#14 385.9  + celery==5.6.3
+#14 385.9  + certifi==2026.7.22
+#14 385.9  + cffi==2.1.1
+#14 385.9  + charset-normalizer==3.5.1
+#14 385.9  + click==8.5.0
+#14 385.9  + click-didyoumean==0.3.1
+#14 385.9  + click-plugins==1.1.1.2
+#14 385.9  + click-repl==0.3.0
+#14 385.9  + cloudpickle==3.1.2
+#14 385.9  + colorama==0.4.6
+#14 385.9  + configobj==5.0.9
+#14 385.9  + contourpy==1.3.3
+#14 385.9  + cryptography==50.0.1
+#14 385.9  + cycler==0.12.1
+#14 385.9  + dacite==1.6.0
+#14 385.9  + dagshub==0.7.2
+#14 385.9  + dagshub-annotation-converter==0.2.2
+#14 385.9  + databricks-sdk==0.137.0
+#14 385.9  + dataclasses-json==0.6.7
+#14 385.9  + dictdiffer==0.10.0
+#14 385.9  + diskcache==5.6.3
+#14 385.9  + distro==1.9.0
+#14 385.9  + docker==7.2.0
+#14 385.9  + dpath==2.2.0
+#14 385.9  + dulwich==1.2.14
+#14 385.9  + dvc==3.67.1
+#14 385.9  + dvc-data==3.18.3
+#14 385.9  + dvc-http==2.32.0
+#14 385.9  + dvc-objects==5.2.0
+#14 385.9  + dvc-render==1.0.2
+#14 385.9  + dvc-studio-client==0.23.0
+#14 385.9  + dvc-task==0.40.2
+#14 385.9  + entrypoints==0.4
+#14 385.9  + fastapi==0.141.1
+#14 385.9  + filelock==3.32.5
+#14 385.9  + flask==3.1.3
+#14 385.9  + flask-cors==6.0.5
+#14 385.9  + flatten-dict==0.5.0
+#14 385.9  + flufl-lock==9.1.0
+#14 385.9  + fonttools==4.64.0
+#14 385.9  + frozenlist==1.8.0
+#14 385.9  + fsspec==2026.7.0
+#14 385.9  + funcy==2.0
+#14 385.9  + gitdb==4.0.12
+#14 385.9  + gitpython==3.1.62
+#14 385.9  + google-auth==2.58.0
+#14 385.9  + gql==4.0.0
+#14 385.9  + grandalf==0.8
+#14 385.9  + graphene==3.4.3
+#14 385.9  + graphql-core==3.2.12
+#14 385.9  + graphql-relay==3.2.0
+#14 385.9  + greenlet==3.5.5
+#14 385.9  + gto==1.10.1
+#14 385.9  + gunicorn==26.2.0
+#14 385.9  + h11==0.16.0
+#14 385.9  + httpcore==1.0.9
+#14 385.9  + httpx==0.28.1
+#14 385.9  + huey==3.4.0
+#14 385.9  + hydra-core==1.3.6
+#14 385.9  + idna==3.19
+#14 385.9  + importlib-metadata==9.0.1
+#14 385.9  + iterative-telemetry==0.0.10
+#14 385.9  + itsdangerous==2.2.0
+#14 385.9  + jinja2==3.1.6
+#14 385.9  + jmespath==1.1.0
+#14 385.9  + joblib==1.6.0
+#14 385.9  + kiwisolver==1.5.1
+#14 385.9  + kombu==5.6.2
+#14 385.9  + lxml==6.1.3
+#14 385.9  + mako==1.4.1
+#14 385.9  + markdown-it-py==4.2.0
+#14 385.9  + markupsafe==3.0.3
+#14 385.9  + marshmallow==3.26.2
+#14 385.9  + matplotlib==3.11.1
+#14 385.9  + mdurl==0.1.2
+#14 385.9  + mlflow==3.16.0
+#14 385.9  + mlflow-skinny==3.16.0
+#14 385.9  + mlflow-tracing==3.16.0
+#14 385.9  + mpmath==1.3.0
+#14 385.9  + multidict==6.7.1
+#14 385.9  + mypy-extensions==1.1.0
+#14 385.9  + narwhals==2.26.0
+#14 385.9  + networkx==3.6.1
+#14 385.9  + numpy==2.5.3
+#14 385.9  + omegaconf==2.3.1
+#14 385.9  + opentelemetry-api==1.44.0
+#14 385.9  + opentelemetry-proto==1.44.0
+#14 385.9  + opentelemetry-sdk==1.44.0
+#14 385.9  + opentelemetry-semantic-conventions==0.65b0
+#14 385.9  + orjson==3.12.0
+#14 385.9  + packaging==26.3
+#14 385.9  + pandas==3.0.5
+#14 385.9  + pathspec==1.1.1
+#14 385.9  + pathvalidate==3.3.1
+#14 385.9  + pillow==12.3.0
+#14 385.9  + platformdirs==4.11.7
+#14 385.9  + prettytable==3.18.0
+#14 385.9  + prompt-toolkit==3.0.53
+#14 385.9  + propcache==0.5.2
+#14 385.9  + protobuf==6.33.6
+#14 385.9  + psutil==7.2.2
+#14 385.9  + pyarrow==25.0.1
+#14 385.9  + pyasn1==0.6.4
+#14 385.9  + pyasn1-modules==0.4.2
+#14 385.9  + pycparser==3.0
+#14 385.9  + pydantic==2.13.5
+#14 385.9  + pydantic-core==2.46.5
+#14 385.9  + pydantic-settings==2.15.0
+#14 385.9  + pydot==4.0.1
+#14 385.9  + pygit2==1.20.0
+#14 385.9  + pygments==2.21.0
+#14 385.9  + pygtrie==2.6.1
+#14 385.9  + pyparsing==3.3.2
+#14 385.9  + python-dateutil==2.9.0.post0
+#14 385.9  + python-dotenv==1.2.3
+#14 385.9  + python-multipart==0.0.32
+#14 385.9  + pyyaml==6.0.3
+#14 385.9  + requests==2.34.2
+#14 385.9  + requests-toolbelt==1.0.0
+#14 385.9  + rich==15.0.0
+#14 385.9  + ruamel-yaml==0.19.1
+#14 385.9  + s3transfer==0.19.2
+#14 385.9  + scikit-learn==1.9.0
+#14 385.9  + scipy==1.18.1
+#14 385.9  + scmrepo==3.6.2
+#14 385.9  + semver==3.0.4
+#14 385.9  + setuptools==81.0.0
+#14 385.9  + shortuuid==1.0.13
+#14 385.9  + shtab==1.12.1
+#14 385.9  + six==1.17.0
+#14 385.9  + skops==0.14.0
+#14 385.9  + smmap==5.0.3
+#14 385.9  + sqlalchemy==2.0.52
+#14 385.9  + sqlparse==0.6.0
+#14 385.9  + sqltrie==0.11.3
+#14 385.9  + starlette==1.6.0
+#14 385.9  + sympy==1.14.0
+#14 385.9  + tabulate==0.10.0
+#14 385.9  + tenacity==9.1.4
+#14 385.9  + threadpoolctl==3.6.0
+#14 385.9  + tomlkit==0.15.1
+#14 385.9  + torch==2.11.0+cpu
+#14 385.9  + torchvision==0.26.0+cpu
+#14 385.9  + tqdm==4.70.0
+#14 385.9  + treelib==1.8.0
+#14 385.9  + typing-extensions==4.16.0
+#14 385.9  + typing-inspect==0.9.0
+#14 385.9  + typing-inspection==0.4.4
+#14 385.9  + tzdata==2026.3
+#14 385.9  + tzlocal==5.4.4
+#14 385.9  + urllib3==2.7.0
+#14 385.9  + uvicorn==0.52.4
+#14 385.9  + vine==5.1.0
+#14 385.9  + voluptuous==0.16.0
+#14 385.9  + wcwidth==0.8.3
+#14 385.9  + werkzeug==3.1.8
+#14 385.9  + yarl==1.24.5
+#14 385.9  + zc-lockfile==4.0
+#14 385.9  + zipp==4.1.0
+#14 DONE 393.6s
+
+#15 [stage-1 3/4] COPY --from=builder /app/.venv /app/.venv
+#15 DONE 15.8s
+
+#16 [stage-1 4/4] COPY src/ ./src/
+#16 DONE 0.5s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 38.7s done
+#17 exporting manifest sha256:26053da313b9d42a39b2114c69feaff7f6d30eaa7a51a7b8e4311554eb9dbc89 done
+#17 exporting config sha256:1481bd4e94c22327fa7f73c2a0240147657a2017bc610c35b4a635848ab5fff0 done
+#17 exporting attestation manifest sha256:e6134ad89928b7361861b6c783b312655400c6e368d01030750234c23c2b7885 0.0s done
+#17 exporting manifest list sha256:b34ddc80450ec9082dc312695bac6fa6589ab6060362b3220e21b3fb1c9eaed5 done
+#17 naming to docker.io/library/food11-api:latest done
+#17 unpacking to docker.io/library/food11-api:latest
+#17 unpacking to docker.io/library/food11-api:latest 13.1s done
+#17 DONE 52.0s

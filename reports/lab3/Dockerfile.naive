@@ -1,0 +1,14 @@
+# Naive single-stage build, only for the size comparison in lab/lab3.md (Question 5).
+# Same steps as the builder stage of ../../Dockerfile, but the app also runs in this
+# image, so the full python:3.12 base image and uv stay in the final image.
+#   docker build -f reports/lab3/Dockerfile.naive -t food11-api:naive .
+FROM python:3.12
+COPY --from=ghcr.io/astral-sh/uv:0.11.3 /uv /bin/uv
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+COPY src/ ./src/
+ENV PATH="/app/.venv/bin:$PATH" PYTHONUNBUFFERED=1
+EXPOSE 8000
+ENTRYPOINT ["uvicorn", "src.food11.serve:app", "--host", "0.0.0.0", "--port", "8000"]

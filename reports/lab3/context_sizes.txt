@@ -1,0 +1,18 @@
+$ du -sh <folders excluded by .dockerignore>
+4.9G	.venv
+1.4G	data
+1.3G	processed
+205M	mlruns
+1.7M	.git
+1.4G	.dvc
+892K	mlflow.db
+6.0M	models
+12K	metrics
+84K	plots
+1.1M	reports
+36K	lab
+
+$ du -sh <what the build actually uses>
+93K	src
+4.0K	pyproject.toml
+672K	uv.lock

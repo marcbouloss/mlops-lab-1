@@ -1,0 +1,37 @@
+# Question 4: one line changed in src/food11/serve.py (FastAPI title "food11" -> "food11 API"), then rebuild
+$ docker build --progress=plain -t food11-api:latest .
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+#2 [internal] load metadata for ghcr.io/astral-sh/uv:0.11.3
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.2s
+#4 [internal] load metadata for docker.io/library/python:3.12
+#4 DONE 2.4s
+#2 [internal] load metadata for ghcr.io/astral-sh/uv:0.11.3
+#2 DONE 2.5s
+#5 [internal] load .dockerignore
+#5 DONE 0.1s
+#6 [internal] load build context
+#6 DONE 0.1s
+#7 [stage-1 1/4] FROM docker.io/library/python:3.12-slim
+#8 DONE 0.3s
+#7 [stage-1 1/4] FROM docker.io/library/python:3.12-slim
+#7 DONE 0.3s
+#9 [builder 1/5] FROM docker.io/library/python:3.12
+#9 DONE 0.3s
+#10 [stage-1 2/4] WORKDIR /app
+#10 CACHED
+#11 [builder 3/5] WORKDIR /app
+#11 CACHED
+#12 [builder 5/5] RUN uv sync --frozen --no-dev --no-install-project
+#12 CACHED
+#13 [builder 2/5] COPY --from=ghcr.io/astral-sh/uv:0.11.3 /uv /bin/uv
+#13 CACHED
+#14 [builder 4/5] COPY pyproject.toml uv.lock ./
+#14 CACHED
+#15 [stage-1 3/4] COPY --from=builder /app/.venv /app/.venv
+#15 CACHED
+#16 [stage-1 4/4] COPY src/ ./src/
+#16 DONE 0.0s
+#17 DONE 0.6s
+total build time: 4s
