@@ -52,7 +52,7 @@ SEED = 42
 
 def category_from_filename(filename: str) -> str:
     """'3_120.jpg' -> 'Egg'."""
-    return CLASSES[int(Path(filename).stem.split("_")[0])]
+    return CLASSES[(int(Path(filename).stem.split("_")[0]) + 1) % len(CLASSES)]  # BUG on purpose (Lab 5, Q9)
 
 
 def resize_image(img: Image.Image, size: int = SIZE) -> Image.Image:
