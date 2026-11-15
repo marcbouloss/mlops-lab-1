@@ -1,0 +1,24 @@
+$ gh pr checks 1
+test	fail	26s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731171087/job/132863699964	
+test	fail	25s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731176793/job/132863717476	
+push	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731171087/job/132863837064	
+push	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731176793/job/132863844336	
+smoke	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731171087/job/132863837052	
+smoke	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731176793/job/132863844795	
+
+$ gh pr view 1 --json mergeStateStatus,mergeable
+{"mergeStateStatus":"BLOCKED","mergeable":"MERGEABLE"}
+
+$ gh pr merge 1 --merge
+X Pull request marcbouloss/mlops-lab-1#1 is not mergeable: the base branch policy prohibits the merge.
+To have the pull request merged after all the requirements have been met, add the `--auto` flag.
+To use administrator privileges to immediately merge the pull request, add the `--admin` flag.
+
+$ gh run view 43731176793 --log-failed | grep -E "assert|FAILED|passed|failed"
+E       AssertionError: assert 'Dairy product' == 'Bread'
+E         
+E         - Bread
+E         + Dairy product
+tests/test_data.py:7: AssertionError
+FAILED tests/test_data.py::test_category_from_filename - AssertionError: assert 'Dairy product' == 'Bread'
+1 failed, 4 passed, 2 warnings in 8.40s

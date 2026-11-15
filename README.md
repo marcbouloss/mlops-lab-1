@@ -17,6 +17,7 @@ All labs build on the same project, so the code lives in one place; each lab has
 | 2 | training + MLflow tracking | [lab/lab2.md](lab/lab2.md), [reports/lab2/](reports/lab2) | [`src/food11/train.py`](src/food11/train.py) | tag [`lab2`](https://github.com/marcbouloss/mlops-lab-1/tree/lab2) |
 | 3 | model registry + Docker serving | [lab/lab3.md](lab/lab3.md), [reports/lab3/](reports/lab3) | [`src/food11/serve.py`](src/food11/serve.py), [`Dockerfile`](Dockerfile), [`.dockerignore`](.dockerignore) | tag [`lab3`](https://github.com/marcbouloss/mlops-lab-1/tree/lab3) |
 | 4 | Docker Compose: mlflow + inference + frontend | [lab/lab4.md](lab/lab4.md), [reports/lab4/](reports/lab4) | [`docker-compose.yml`](docker-compose.yml), [`mlflow/Dockerfile`](mlflow/Dockerfile), [`frontend/`](frontend) | tag [`lab4`](https://github.com/marcbouloss/mlops-lab-1/tree/lab4) |
+| 5 | CI/CD with GitHub Actions: tests, data contract, image on ghcr.io, promotion gate | [lab/lab5.md](lab/lab5.md), [reports/lab5/](reports/lab5) | [`.github/workflows/ci.yml`](.github/workflows/ci.yml), [`tests/`](tests), [`src/food11/validate_data.py`](src/food11/validate_data.py), [`src/food11/promote.py`](src/food11/promote.py) | tag [`lab5`](https://github.com/marcbouloss/mlops-lab-1/tree/lab5) |
 
 ## Stack
 
@@ -43,6 +44,10 @@ Dockerfile             # Lab 3: multi-stage image (uv builder -> python slim)
 docker-compose.yml     # Lab 4: mlflow + inference + frontend (docker compose up --build)
 mlflow/Dockerfile      # Lab 4: tracking server + registry image (state in the mlflow-data volume)
 frontend/              # Lab 4: Streamlit upload page (app.py) + its Dockerfile
+.github/workflows/ci.yml       # Lab 5: ruff + pytest -> container smoke test -> push ghcr.io:<sha> (main)
+tests/                         # Lab 5: unit tests + API test with a fake model
+src/food11/validate_data.py    # Lab 5: data contract (exit 1 on failure)
+src/food11/promote.py          # Lab 5: quality gate, moves the champion / challenger alias
 processed/             # split manifests (CSV), pipeline output
 src/preprocess.py      # stage 1: raw folders -> train/val/test.csv
 src/train.py           # stage 2: transfer learning -> models/model.pt

@@ -1,0 +1,11 @@
+$ uv run python src/food11/promote.py --version 2
+candidate v2: test_accuracy=0.1359
+champion  v1: test_accuracy=0.8273  se=0.0114  threshold=acc_champion+2se=0.8501
+decision: challenger -> alias 'challenger' set on v2
+$ uv run python src/food11/promote.py --version 3
+candidate v3: test_accuracy=0.8358
+champion  v1: test_accuracy=0.8273  se=0.0114  threshold=acc_champion+2se=0.8501
+decision: challenger -> alias 'challenger' set on v3
+aliases: {'challenger': '3', 'champion': '1'}
+v2 tags: {'gate_decision': 'challenger', 'gate_acc_candidate': '0.1359', 'gate_acc_champion': '0.8273', 'gate_champion_version': '1', 'gate_threshold': '0.8501', 'gate_n_test': '1096'}
+v3 tags: {'gate_decision': 'challenger', 'gate_acc_candidate': '0.8358', 'gate_acc_champion': '0.8273', 'gate_champion_version': '1', 'gate_threshold': '0.8501', 'gate_n_test': '1096'}

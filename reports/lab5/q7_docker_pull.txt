@@ -1,0 +1,8 @@
+$ docker pull ghcr.io/marcbouloss/mlops-lab-1:9ae1ca8c6e390eb24e834bf4e7d5ef5abdaa90ea
+9ae1ca8c6e390eb24e834bf4e7d5ef5abdaa90ea: Pulling from marcbouloss/mlops-lab-1
+Digest: sha256:ad322ba23a9f72d604159aff8cc14680c4769f2cad82aa6c6b7234942db9e779
+Status: Image is up to date for ghcr.io/marcbouloss/mlops-lab-1:9ae1ca8c6e390eb24e834bf4e7d5ef5abdaa90ea
+ghcr.io/marcbouloss/mlops-lab-1:9ae1ca8c6e390eb24e834bf4e7d5ef5abdaa90ea
+$ docker images ghcr.io/marcbouloss/mlops-lab-1
+IMAGE                                                                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+ghcr.io/marcbouloss/mlops-lab-1:9ae1ca8c6e390eb24e834bf4e7d5ef5abdaa90ea   ad322ba23a9f       2.57GB          563MB        

@@ -1,0 +1,15 @@
+$ rm data/food11_processed_mini/evaluation/Bread/planted_copy.jpg
+$ uv run python src/food11/validate_data.py data/food11_processed_mini
+PASS  each split has exactly the 11 class folders
+PASS  every image opens, is RGB and 128x128
+PASS  every class has at least 50 images per split
+PASS  no image appears in two splits
+PASS  class shares in training and validation differ by at most 0.05
+exit status: 0
+$ uv run python src/food11/validate_data.py data/food11_processed
+PASS  each split has exactly the 11 class folders
+PASS  every image opens, is RGB and 128x128
+PASS  every class has at least 50 images per split
+PASS  no image appears in two splits
+PASS  class shares in training and validation differ by at most 0.05
+exit status: 0
