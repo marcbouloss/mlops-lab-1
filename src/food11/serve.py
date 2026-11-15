@@ -18,13 +18,18 @@ from src.food11.train import EVAL_TF
 
 MODEL_URI = "models:/food11@champion"
 
+model = None  # module-level so tests can swap in a fake
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # overridable so the container can point at the host (host.docker.internal)
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000"))
-    # loaded once, not per request; cpu because Lab 2 exported it (pt2) on cpu
-    app.state.model = mlflow.pyfunc.load_model(MODEL_URI, model_config={"device": "cpu"})
+    global model
+    # SKIP_MODEL: start without MLflow (unit tests, CI smoke test); /predict then answers 503
+    if not os.environ.get("SKIP_MODEL"):
+        # overridable so the container can point at the host (host.docker.internal)
+        mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000"))
+        # loaded once, not per request; cpu because Lab 2 exported it (pt2) on cpu
+        model = mlflow.pyfunc.load_model(MODEL_URI, model_config={"device": "cpu"})
     yield
 
 
@@ -38,11 +43,13 @@ def health():
 
 @app.post("/predict")
 def predict(file: UploadFile = File(...)):
+    if model is None:
+        raise HTTPException(503, "model not loaded")
     try:
         img = Image.open(file.file).convert("RGB")
     except UnidentifiedImageError:
         raise HTTPException(400, "file is not an image")
     x = EVAL_TF(img).unsqueeze(0).numpy()  # (1, 3, 224, 224) float32, as logged in Lab 2
-    probs = torch.as_tensor(app.state.model.predict(x)).softmax(1)[0]
+    probs = torch.as_tensor(model.predict(x)).softmax(1)[0]
     conf, idx = probs.max(0)
     return {"category": CLASSES[idx.item()], "confidence": round(conf.item(), 4)}

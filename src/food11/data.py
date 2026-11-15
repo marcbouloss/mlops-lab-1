@@ -17,6 +17,7 @@ expects: one sub-folder per class, the folder name being the label.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import random
 import shutil
 from concurrent.futures import ProcessPoolExecutor
@@ -49,17 +50,20 @@ MINI_PER_CLASS = 100
 SEED = 42
 
 
-def class_of(path: Path) -> str:
-    """'3_127.jpg' -> 'Egg'."""
-    return CLASSES[int(path.stem.split("_")[0])]
+def category_from_filename(filename: str) -> str:
+    """'3_120.jpg' -> 'Egg'."""
+    return CLASSES[int(Path(filename).stem.split("_")[0])]
+
+
+def resize_image(img: Image.Image, size: int = SIZE) -> Image.Image:
+    """RGB image of size x size: center-crop to a square, then resize (keeps the aspect ratio, no stretching)."""
+    return ImageOps.fit(img.convert("RGB"), (size, size), Image.Resampling.LANCZOS)
 
 
 def shrink(job: tuple[Path, Path]) -> None:
-    """Center-crop to a square and resize to SIZE x SIZE (keeps the aspect ratio, no stretching)."""
     src, dst = job
     with Image.open(src) as im:
-        im = ImageOps.fit(im.convert("RGB"), (SIZE, SIZE), Image.Resampling.LANCZOS)
-        im.save(dst, "JPEG", quality=95)
+        resize_image(im).save(dst, "JPEG", quality=95)
 
 
 def main() -> None:
@@ -71,16 +75,24 @@ def main() -> None:
     if not RAW.is_dir():
         raise SystemExit(f"{RAW} not found - run `dvc pull` first")
 
-    # 1. food11_processed: every image, resized, sorted into class folders
+    # 1. food11_processed: every image, resized, sorted into class folders.
+    # Food-11 ships ~600 byte-identical images in two splits: keep the first copy
+    # (training < validation < evaluation) so no test image was seen in training.
     shutil.rmtree(PROCESSED, ignore_errors=True)
-    jobs = []
+    jobs, seen, dropped = [], set(), 0
     for split in SPLITS:
         for src in sorted((RAW / split).glob("*.jpg")):
-            dst = PROCESSED / split / class_of(src) / src.name
+            h = hashlib.md5(src.read_bytes()).hexdigest()
+            if h in seen:
+                dropped += 1
+                continue
+            seen.add(h)
+            dst = PROCESSED / split / category_from_filename(src.name) / src.name
             dst.parent.mkdir(parents=True, exist_ok=True)
             jobs.append((src, dst))
     if not jobs:
         raise SystemExit(f"no .jpg files found under {RAW}")
+    print(f"dropped {dropped} duplicate images")
 
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         for i, _ in enumerate(pool.map(shrink, jobs, chunksize=64), 1):
