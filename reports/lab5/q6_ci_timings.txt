@@ -1,0 +1,25 @@
+== run 9ae1ca8 success: 610s wall clock
+test: 25s total
+   2s  Run actions/checkout@v4
+   5s  Run uv sync --frozen
+   12s  Run uv run pytest -q
+smoke: 133s total
+   118s  Run docker build -t food11-api:ci .
+   10s  start the container without a model and probe it
+push: 445s total
+   5s  Run docker/setup-buildx-action@v3
+   416s  Run docker/build-push-action@v6
+   2s  Post Run docker/build-push-action@v6
+   15s  Post Run docker/setup-buildx-action@v3
+== run c71f827 success: 177s wall clock
+test: 24s total
+   5s  Run uv sync --frozen
+   12s  Run uv run pytest -q
+smoke: 122s total
+   2s  Run actions/checkout@v4
+   105s  Run docker build -t food11-api:ci .
+   12s  start the container without a model and probe it
+push: 26s total
+   4s  Run actions/checkout@v4
+   11s  Run docker/setup-buildx-action@v3
+   5s  Run docker/build-push-action@v6

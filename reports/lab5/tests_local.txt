@@ -1,0 +1,5 @@
+$ uv run ruff check src tests
+All checks passed!
+$ uv run pytest -q
+.....                                                                    [100%]
+5 passed in 21.18s

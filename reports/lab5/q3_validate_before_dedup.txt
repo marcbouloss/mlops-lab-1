@@ -1,0 +1,29 @@
+# First run of the contract on data/food11_processed_mini as built by the Lab 1 data.py
+# (before de-duplication; data.dvc md5 46d5e3d088b302321f829c4e788e5272.dir)
+$ uv run python src/food11/validate_data.py data/food11_processed_mini
+PASS  each split has exactly the 11 class folders
+PASS  every image opens, is RGB and 128x128
+PASS  every class has at least 50 images per split
+FAIL  no image appears in two splits
+      - data\food11_processed_mini\validation\Dairy product\1_129.jpg duplicates data\food11_processed_mini\training\Dairy product\1_328.jpg
+      - data\food11_processed_mini\validation\Dessert\2_442.jpg duplicates data\food11_processed_mini\training\Dessert\2_1124.jpg
+      - data\food11_processed_mini\evaluation\Bread\0_207.jpg duplicates data\food11_processed_mini\validation\Bread\0_243.jpg
+      - data\food11_processed_mini\evaluation\Bread\0_245.jpg duplicates data\food11_processed_mini\training\Bread\0_688.jpg
+      - data\food11_processed_mini\evaluation\Bread\0_257.jpg duplicates data\food11_processed_mini\validation\Bread\0_284.jpg
+      - data\food11_processed_mini\evaluation\Bread\0_312.jpg duplicates data\food11_processed_mini\validation\Bread\0_208.jpg
+      - data\food11_processed_mini\evaluation\Dessert\2_249.jpg duplicates data\food11_processed_mini\validation\Dessert\2_267.jpg
+      - data\food11_processed_mini\evaluation\Dessert\2_489.jpg duplicates data\food11_processed_mini\validation\Dessert\2_491.jpg
+      - data\food11_processed_mini\evaluation\Fried food\4_118.jpg duplicates data\food11_processed_mini\training\Fried food\4_686.jpg
+      - data\food11_processed_mini\evaluation\Fried food\4_174.jpg duplicates data\food11_processed_mini\validation\Fried food\4_304.jpg
+      ... and 13 more
+PASS  class shares in training and validation differ by at most 0.05
+exit status: 1
+
+# The duplicates come from the original dataset, not from the resize step:
+$ md5sum data/food11_raw/validation/1_129.jpg data/food11_raw/training/1_328.jpg
+9d444538ac0de7672656af5102c3012a *data/food11_raw/validation/1_129.jpg
+9d444538ac0de7672656af5102c3012a *data/food11_raw/training/1_328.jpg
+$ # hash every raw image
+raw images: 16643 | distinct contents: 16020
+contents present in more than one split: 611
+extra copies dropped by data.py (first copy kept, training < validation < evaluation): 623

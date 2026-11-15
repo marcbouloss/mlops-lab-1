@@ -1,0 +1,13 @@
+# after pushing the fix
+$ gh pr checks 1
+push	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731259254/job/132864757315	
+push	skipping	0	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731261669/job/132864769246	
+smoke	pass	2m23s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731259254/job/132864069918	
+smoke	pass	2m22s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731261669/job/132864089343	
+test	pass	20s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731259254/job/132863966510	
+test	pass	23s	https://github.com/marcbouloss/mlops-lab-1/actions/runs/43731261669/job/132863973843	
+
+$ gh pr view 1 --json mergeStateStatus
+{"mergeStateStatus":"CLEAN"}
+$ gh pr merge 1 --merge
+{"mergedAt":"2026-11-15T16:01:56Z","state":"MERGED"}
